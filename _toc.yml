@@ -14,14 +14,16 @@ parts:
     title: Method of Moments
   - file: chapters/pgf_solution
     title: Explicit solution
-  - file: chapters/ame_examples
-    title: Approximate master equations
+  - file: chapters/detailed_balance
+    title: Detailed balance
 
 - caption: Applications
   chapters:
   - file: chapters/lotka_volterra
     title: Predator-prey
-  - file: chapters/adaptive_networks
-    title: Adaptive networks
+  - file: chapters/ame_examples
+    title: Approximate master equations
+  - file: chapters/meanFLAME
+    title: Mean-field limits
 
 
