@@ -65,6 +65,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'chapters/meanFLAME';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Exercises part I: SIS dynamics" href="exercise_SIS.html" />
     <link rel="prev" title="Approximate Master Equations" href="ame_examples.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -176,6 +177,12 @@
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Mean-field limits to approximate master equations</a></li>
 
 
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Exercises</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="exercise_SIS.html">Part I: SIS dynamics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="exercise_enzyme.html">Part II: Enzymes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="exercise_game.html">Part III: Game theory</a></li>
 </ul>
 
     </div>
@@ -561,20 +568,10 @@
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="coupled-birth-death-processes">
 <h1>Coupled birth-death processes<a class="headerlink" href="#coupled-birth-death-processes" title="Link to this heading">#</a></h1>
+<p>We use a library called <em>odeintw</em> for integration of two-dimensional systems. You might therefore want to run the next command on your computer (or something similar for your package installer).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#We use odeintw for integration of two-dimensional systems</span>
-<span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>odeintw
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Defaulting to user installation because normal site-packages is not writeable
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: odeintw in /home/laurent/.local/lib/python3.10/site-packages (1.0.2)
-Requirement already satisfied: scipy in /home/laurent/.local/lib/python3.10/site-packages (from odeintw) (1.14.1)
-Requirement already satisfied: numpy&lt;2.3,&gt;=1.23.5 in /home/laurent/.local/lib/python3.10/site-packages (from scipy-&gt;odeintw) (1.25.2)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="ch">#!pip install odeintw</span>
 </pre></div>
 </div>
 </div>
@@ -648,7 +645,7 @@ Requirement already satisfied: numpy&lt;2.3,&gt;=1.23.5 in /home/laurent/.local/
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x77e452b01300&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x740b2ebc1240&gt;
 </pre></div>
 </div>
 <img alt="../_images/b65ecf01de403931364b8b0058366b43648adc33d5e20aea8e0422fb55b6f324.png" src="../_images/b65ecf01de403931364b8b0058366b43648adc33d5e20aea8e0422fb55b6f324.png" />
@@ -805,6 +802,15 @@ Requirement already satisfied: numpy&lt;2.3,&gt;=1.23.5 in /home/laurent/.local/
         <p class="prev-next-subtitle">previous</p>
         <p class="prev-next-title">Approximate Master Equations</p>
       </div>
+    </a>
+    <a class="right-next"
+       href="exercise_SIS.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Exercises part I: SIS dynamics</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
                 </footer>

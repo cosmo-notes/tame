@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Probability generating function solution &#8212; TAME</title>
+    <title>Detailed balance &#8212; TAME</title>
   
   
   
@@ -177,6 +177,12 @@
 <li class="toctree-l1"><a class="reference internal" href="meanFLAME.html">Mean-field limits to approximate master equations</a></li>
 
 
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Exercises</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="exercise_SIS.html">Part I: SIS dynamics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="exercise_enzyme.html">Part II: Enzymes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="exercise_game.html">Part III: Game theory</a></li>
 </ul>
 
     </div>
@@ -358,7 +364,7 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Probability generating function solution</h1>
+    <h1>Detailed balance</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -369,7 +375,7 @@
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solution-to-the-birth-death-process">Solution to the birth-death process</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comparison-with-numerical-integration">Comparison with numerical integration</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#defining-equilibrium-through-detailed-balance">Defining equilibrium through detailed balance</a></li>
 </ul>
             </nav>
         </div>
@@ -381,19 +387,23 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="probability-generating-function-solution">
-<h1>Probability generating function solution<a class="headerlink" href="#probability-generating-function-solution" title="Link to this heading">#</a></h1>
-<p>Master equations are simply system of differential equations and can therefore be solved by the usual techniques. When looking for a steady-state solution, we can simply set all time derivatives to zero and try to solve for the occupation numbers at equilibrium. These system often contain a large or even infinite number of equations, but for most model their structure should be regular. This allows us to write recursion formula for the equilibrium values. Recursion that, if lucky or creative enough, we could solve explicitly. Or we could be a bit more systematic and attempt this approach using <strong>probability generating functions</strong>.</p>
-<p>Consider the following generating function,</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="detailed-balance">
+<h1>Detailed balance<a class="headerlink" href="#detailed-balance" title="Link to this heading">#</a></h1>
+<p>We started the previous section by stating the obvious: Master equations are simply systems of differential equations and can therefore be solved by the usual techniques. However, there are many additional restrictions to master equations that allow us to define useful tools for their analysis. In particular, master equations track occupation numbers which represent a probability mass function. Therefore, the variables of this system of equations are always positive and must sum to one.</p>
+<p>The steady states of master equations sometimes follow a highly constrained set of flows that can help solve the exact equilibrium values. We say that a system follows <a class="reference external" href="https://en.wikipedia.org/wiki/Detailed_balance">detailed balance</a> when the input and output flows between each pairs of states balance each other (i.e., every transition is reversible and used as frequently in each direction). Mathematically, we can write</p>
 <div class="math notranslate nohighlight">
 \[
-G(x,t) = \sum _{n=-\infty}^{\infty}P_n(t)x^n
+J_{n\rightarrow m} = J_{m\rightarrow n} \quad or \quad \omega(n,m)P_n = \omega(m,n)P_m \quad \forall \; n,m
 \]</div>
-<p>which is defined over all integer values of <span class="math notranslate nohighlight">\(n\)</span>. <span class="math notranslate nohighlight">\(G(x,t)\)</span> is a probability generating functions since its coefficients <span class="math notranslate nohighlight">\(P_n(t)\)</span> are occupation numbers, and therefore positive coefficients, such that <span class="math notranslate nohighlight">\(G(1,t) = 1\)</span> for all time <span class="math notranslate nohighlight">\(t\)</span>.</p>
-<p>Our goal here will therefore be to rewrite master equations (large systems of differential equations) in terms of a single partial differential equation for <span class="math notranslate nohighlight">\(G(x,t\)</span>).</p>
+<p>where the second equality highlights how this equality between flow of probability mass can be expressed as an equality between rates of transition <span class="math notranslate nohighlight">\(\omega\)</span> and occupation numbers <span class="math notranslate nohighlight">\(P_n\)</span> for all pairs of states. It follows that, in a system following detailed balance, the ratio of occupation numbers at steady state can be written as</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{P_m}{P_n} = \frac{\omega(m,n)}{\omega(n,m)}
+\]</div>
+<p>which is a very restrictive condition and can make exact solution at equilibrium much easier.</p>
 <section id="solution-to-the-birth-death-process">
 <h2>Solution to the birth-death process<a class="headerlink" href="#solution-to-the-birth-death-process" title="Link to this heading">#</a></h2>
-<p>Consider the <a class="reference external" href="https://en.wikipedia.org/wiki/Birth%E2%80%93death_process">birth–death process</a> with a fixed constant birth rate <span class="math notranslate nohighlight">\(\mu\)</span> for particles and a fixed death rate <span class="math notranslate nohighlight">\(\nu\)</span> for all active particles. This is a system we also tackle with numerical integration, which means we know it contains a steady-state distribution over all occupation numbers. For this process, our master equations are defined as follows for <span class="math notranslate nohighlight">\(n\geq 0\)</span>,</p>
+<p>We have been using a simple <a class="reference external" href="https://en.wikipedia.org/wiki/Birth%E2%80%93death_process">birth–death process</a> as an example for a while now. Our previous, explicit, solution used the full master equation,</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{align}
@@ -401,103 +411,42 @@ G(x,t) = \sum _{n=-\infty}^{\infty}P_n(t)x^n
 \frac{d}{dt}P_n(t) &amp;= -(\mu + n\nu)P_n(t) + (n+1)\nu P_{n+1}(t) + \mu P_{n-1}(t) \quad \textrm{for n&gt;0}\\
 \end{align}
 \end{split}\]</div>
-<p>Equivalently, we can use a equation for all <span class="math notranslate nohighlight">\(n\)</span> and simply state that <span class="math notranslate nohighlight">\(P_{n&lt;0}(t) = 0\)</span>:</p>
+<p>However, instead of asking all flows to equal zero on every cell, we can instead ask flows in both direction to match for each transition. This gives us a much simpler recursion than in the previous section. Namely, using detailed balance, we write</p>
 <div class="math notranslate nohighlight">
 \[
-\frac{d}{dt}P_n(t) = -(\mu + n\nu)P_n(t) + (n+1)\nu P_{n+1}(t) + \mu P_{n-1}(t)
+\frac{P_n}{P_{n-1}} = \frac{\mu}{n\nu} \; .
 \]</div>
-<p>The method of <strong><em>generatingfunctionology</em></strong> <span id="id1">[<a class="reference internal" href="index.html#id10" title="Herbert S. Wilf. generatingfunctionology. CRC press, 2005.">Wilf, 2005</a>]</span> is to multiply both sides of such an equation by <span class="math notranslate nohighlight">\(x^n\)</span> and sum over all values of <span class="math notranslate nohighlight">\(n\)</span>. This gives us</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-\begin{align}
-\sum_{n=-\infty}^{\infty} \frac{d}{dt}P_n(t) x^n &amp;= \sum _{n=-\infty}^{\infty} \left[-\mu P_n(t)x^n - n\nu P_n(t)x^n + (n+1)\nu P_{n+1}(t)x^n + \mu P_{n-1}(t)x^n\right] \\
-\frac{\partial}{\partial t} G(x,t) &amp; = -\mu G(x,t) - x\nu\frac{\partial}{\partial x}G(x,t) + \nu\frac{\partial}{\partial x}G(x,t) + x\mu G(x,t) \\
-\frac{\partial}{\partial t} G(x,t) &amp; = (1-x)\left[\nu \frac{\partial}{\partial x}G(x,t) -\mu G(x,t)\right]
-\end{align}
-\end{split}\]</div>
-<p>In some cases, partial differential equations of this type can be solved explicitly using the method of the characteristics. In practice however, we tend to use this approach to solve for the steady-state value <span class="math notranslate nohighlight">\(G(x) = \lim_{t\rightarrow\infty} G(x,t)\)</span> where we assume that the temporal derivative of <span class="math notranslate nohighlight">\(G(x,t)\)</span> is equal to zero. We therefore have</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-\begin{align}
-0 &amp;= (1-x)\left[\nu\frac{d}{dx}G(x) - \mu G(x)\right] \\
-\frac{d}{dx}G(x) &amp;= \frac{\mu}{\nu}G(x)
-\end{align}
-\end{split}\]</div>
-<p>This is a simple case where, recalling our lovely calculus courses, we get</p>
+<p>Let <span class="math notranslate nohighlight">\(P_0\)</span> be its own thing to start the series. One can then write the next few terms as <span class="math notranslate nohighlight">\(P_1 = \frac{\mu}{\nu}P_0\)</span>, <span class="math notranslate nohighlight">\(P_2 = \frac{\mu^2}{2\nu^2}P_0\)</span>, and quickly generalize to</p>
 <div class="math notranslate nohighlight">
 \[
-G(x) = \exp\left(\frac{\mu}{\nu}x + C\right)
+P_n = \frac{1}{n!}\left(\frac{\mu}{\nu}\right)^n P_0 \; .
 \]</div>
-<p>where the constant of integration can be identified through our normalization condition <span class="math notranslate nohighlight">\(G(1) = 1\)</span> such that</p>
+<p>And all that is left is to solve for <span class="math notranslate nohighlight">\(P_0\)</span>. What else can we use? Our normalization condition: <span class="math notranslate nohighlight">\(\sum_n P_n = 1\)</span>. We therefore write</p>
 <div class="math notranslate nohighlight">
 \[
-G(x) = \exp\left(\frac{\mu}{\nu}(x-1)\right)
+\frac{1}{P_0} = \sum_{n=0}^\infty \frac{1}{n!}\left(\frac{\mu}{\nu}\right)^n = e^{\mu/\nu}
+\]</div>
+<p>where we used the Taylor series of the exponential function to simplify the sum and get the last equality.</p>
+<p>We relatively easily re-obtained our previous solution using the principle of detailed balance:</p>
+<div class="math notranslate nohighlight">
+\[
+P_n = \frac{1}{n!}\left(\frac{\mu}{\nu}\right)^n e^{-\mu/\nu} \; .
 \]</div>
 </section>
-<section id="comparison-with-numerical-integration">
-<h2>Comparison with numerical integration<a class="headerlink" href="#comparison-with-numerical-integration" title="Link to this heading">#</a></h2>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">([</span><span class="s1">&#39;ggplot&#39;</span><span class="p">,</span> <span class="s1">&#39;seaborn-talk&#39;</span><span class="p">])</span>
-
-<span class="c1"># We will use the odeint routine</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">scipy.integrate</span><span class="w"> </span><span class="kn">import</span> <span class="n">odeint</span>
-
-<span class="c1"># Master Equations</span>
-<span class="k">def</span><span class="w"> </span><span class="nf">J</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">mu</span><span class="p">,</span> <span class="n">nu</span><span class="p">):</span>    
-    <span class="n">dx</span> <span class="o">=</span> <span class="mi">0</span><span class="o">*</span><span class="n">x</span>
-    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)):</span>
-        <span class="k">if</span> <span class="n">n</span><span class="o">==</span><span class="mi">0</span><span class="p">:</span> <span class="c1">#for first state</span>
-            <span class="n">dx</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span> <span class="n">mu</span><span class="o">*</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">nu</span><span class="o">*</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-        <span class="k">elif</span> <span class="n">n</span><span class="o">==</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span> <span class="c1">#for last state</span>
-            <span class="n">dx</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="p">(</span><span class="n">nu</span><span class="o">*</span><span class="n">n</span><span class="p">)</span><span class="o">*</span><span class="n">x</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">+</span> <span class="n">mu</span><span class="o">*</span><span class="n">x</span><span class="p">[</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-        <span class="k">else</span><span class="p">:</span> <span class="c1">#all other states</span>
-            <span class="n">dx</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="p">(</span><span class="n">mu</span><span class="o">+</span><span class="n">nu</span><span class="o">*</span><span class="n">n</span><span class="p">)</span><span class="o">*</span><span class="n">x</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">+</span> <span class="n">nu</span><span class="o">*</span><span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">x</span><span class="p">[</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">mu</span><span class="o">*</span><span class="n">x</span><span class="p">[</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-
-    <span class="k">return</span> <span class="n">dx</span>
-
-<span class="c1"># Time of observations</span>
-<span class="n">t_length</span> <span class="o">=</span> <span class="mi">200</span>
-<span class="n">t_steps</span> <span class="o">=</span> <span class="mi">10</span>
-<span class="n">t_vec</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">t_length</span><span class="p">,</span> <span class="n">t_steps</span><span class="p">)</span>
-
-<span class="c1"># Initial conditions</span>
-<span class="n">nb_of_states</span> <span class="o">=</span> <span class="mi">10</span>
-<span class="n">x_0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">nb_of_states</span><span class="p">)</span>
-<span class="n">x_0</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
-
-<span class="c1"># Parameters</span>
-<span class="n">mu</span> <span class="o">=</span> <span class="mf">0.3</span>
-<span class="n">nu</span> <span class="o">=</span> <span class="mf">0.1</span>
-
-<span class="c1"># Numerical integration</span>
-<span class="n">G</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">t</span><span class="p">:</span> <span class="n">J</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">mu</span><span class="p">,</span> <span class="n">nu</span><span class="p">)</span>
-<span class="n">x_path</span> <span class="o">=</span> <span class="n">odeint</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">x_0</span><span class="p">,</span> <span class="n">t_vec</span><span class="p">)</span>
-
-<span class="c1"># PGF solution</span>
-<span class="n">G</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">((</span><span class="n">mu</span><span class="o">/</span><span class="n">nu</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
-<span class="n">G</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vectorize</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>
-<span class="n">N</span> <span class="o">=</span> <span class="n">nb_of_states</span>
-<span class="n">n</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
-<span class="n">c</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="mi">1</span><span class="n">j</span><span class="o">*</span><span class="n">n</span><span class="o">/</span><span class="n">N</span><span class="p">)</span>
-<span class="n">pn</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">fft</span><span class="p">(</span><span class="n">G</span><span class="p">(</span><span class="n">c</span><span class="p">))</span><span class="o">/</span><span class="n">N</span><span class="p">)</span>
-
-<span class="c1"># Plot</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">nb_of_states</span><span class="p">),</span><span class="n">x_path</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">marker</span><span class="o">=</span><span class="s2">&quot;o&quot;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">fr</span><span class="s2">&quot;$t = </span><span class="si">{</span><span class="n">t_vec</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2">$&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">nb_of_states</span><span class="p">),</span><span class="n">pn</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s2">&quot;*&quot;</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;PGF solution&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Occupation number&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Number of particles&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../_images/3c480864cf1c1d3673e2aef1d067e4b87cc6e0f1fd139768721416ee0ced018f.png" src="../_images/3c480864cf1c1d3673e2aef1d067e4b87cc6e0f1fd139768721416ee0ced018f.png" />
-</div>
-</div>
+<section id="defining-equilibrium-through-detailed-balance">
+<h2>Defining equilibrium through detailed balance<a class="headerlink" href="#defining-equilibrium-through-detailed-balance" title="Link to this heading">#</a></h2>
+<p>Let us now do a simple experiment using detailed balance in a system at equilibrium in an unspecified number of dimensions. We start this step at state <span class="math notranslate nohighlight">\(n=0\)</span>, which is nothing special, and first move to state <span class="math notranslate nohighlight">\(n=1\)</span>. The occupation number at that state is therefore <span class="math notranslate nohighlight">\(P_1 = P_0 \frac{\omega(1,0)}{\omega(0,1)}\)</span>. Now assume that we do a much longer chain taking us from state 0 to state <span class="math notranslate nohighlight">\(m\)</span>, the same logic gives us:</p>
+<div class="math notranslate nohighlight">
+\[
+P_m = P_0 \prod _{j=0}^{m-1} \frac{\omega(j+1,j)}{\omega(j,j+1)} \; .
+\]</div>
+<p>If we pause for a second, we can realize that this is the logic we used to solve the previous system using a chain of length one. This was all we needed to account for all mechanisms. However, sometimes, using longer chains can be useful! In any way, the value of <span class="math notranslate nohighlight">\(P_0\)</span> is eventually determined by the normalization condition as we did above.</p>
+<p>Now, let us close the chain into a loop. Let’s assume that the final state is the first state; i.e., <span class="math notranslate nohighlight">\(m\equiv 0\)</span>. Then, the product in our previous expression has to be equal to 1 for <span class="math notranslate nohighlight">\(P_0 = P_0\)</span>. This means that over any close loop or cycle <span class="math notranslate nohighlight">\(\Gamma\)</span> in the transition network, we have (if detailed balance holds):</p>
+<div class="math notranslate nohighlight">
+\[
+\prod _{j\in\Gamma} \frac{\omega(j+1,j)}{\omega(j,j+1)} = 1 \; .
+\]</div>
+<p>This is an important result as it is independent of any unknown stationary occupation numbers <span class="math notranslate nohighlight">\(P_n\)</span>. It simply relates the concept of detailed balance to the mechanistic transitions and their parameters. It can be used to prove that detailed balance holds as a function of the transition rates.</p>
 </section>
 </section>
 
@@ -567,7 +516,7 @@ G(x) = \exp\left(\frac{\mu}{\nu}(x-1)\right)
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solution-to-the-birth-death-process">Solution to the birth-death process</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comparison-with-numerical-integration">Comparison with numerical integration</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#defining-equilibrium-through-detailed-balance">Defining equilibrium through detailed balance</a></li>
 </ul>
   </nav></div>
 

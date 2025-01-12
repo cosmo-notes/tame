@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Adaptive networks &#8212; TAME</title>
+    <title>Exercises part II: Enzymes &#8212; TAME</title>
   
   
   
@@ -60,9 +60,13 @@
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'chapters/adaptive_networks';</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chapters/exercise_enzyme';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Exercises part III: Game theory" href="exercise_game.html" />
+    <link rel="prev" title="Exercises part I: SIS dynamics" href="exercise_SIS.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -113,8 +117,6 @@
     <div class="bd-container__inner bd-page-width">
       
       
-      
-        
       
       <dialog id="pst-primary-sidebar-modal"></dialog>
       <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
@@ -177,9 +179,9 @@
 
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Exercises</span></p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="exercise_SIS.html">Part I: SIS dynamics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="exercise_enzyme.html">Part II: Enzymes</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Part II: Enzymes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="exercise_game.html">Part III: Game theory</a></li>
 </ul>
 
@@ -240,7 +242,7 @@
       
       
       
-      <li><a href="https://mybinder.org/v2/gh/cosmos-books/tame/main?urlpath=lab/tree/chapters/adaptive_networks.ipynb" target="_blank"
+      <li><a href="https://mybinder.org/v2/gh/cosmos-books/tame/main?urlpath=lab/tree/chapters/exercise_enzyme.ipynb" target="_blank"
    class="btn btn-sm dropdown-item"
    title="Launch on Binder"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -286,7 +288,7 @@
       
       
       
-      <li><a href="../_sources/chapters/adaptive_networks.ipynb" target="_blank"
+      <li><a href="../_sources/chapters/exercise_enzyme.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -362,7 +364,7 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Adaptive networks</h1>
+    <h1>Exercises part II: Enzymes</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -372,7 +374,7 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#adaptive-networks-with-node-based-ames">Adaptive networks with node-based AMEs</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#enzymes-and-chemical-reactions">Enzymes and chemical reactions</a></li>
 </ul>
             </nav>
         </div>
@@ -384,13 +386,29 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="adaptive-networks">
-<h1>Adaptive networks<a class="headerlink" href="#adaptive-networks" title="Link to this heading">#</a></h1>
-<p><strong>Adaptive networks</strong> refer to a class of network models where the structure co-evolves with (or in response to) a dynamical process occurring on the network. Think for example about a teacher staying home sick, such that all connections with students are <em>rewired</em> to a substitute teacher. The network is adapting to the contagion dynamics and trying to avoid further spread.</p>
-<p>In this setting, dynamical correlations between the states of different nodes are critical. Classic mean-field approach that fail to take those into account will fail to capture the adaptive mechanisms! Master equations can help, but given that networks tend to be large and complex, <strong>approximate master equations</strong> are the best tool for the job!</p>
-<section id="adaptive-networks-with-node-based-ames">
-<h2>Adaptive networks with node-based AMEs<a class="headerlink" href="#adaptive-networks-with-node-based-ames" title="Link to this heading">#</a></h2>
-<p>Coming soon! How much better are AMEs than the pairwise description used in <strong><em>The effect of a prudent adaptive behaviour on disease transmission</em></strong> <span id="id1">[<a class="reference internal" href="index.html#id9" title="Samuel V. Scarpino, Antoine Allard, and Laurent Hébert-Dufresne. The effect of a prudent adaptive behaviour on disease transmission. Nature Physics, 12(11):1042-1046, 2016. URL: https://doi.org/10.1038/nphys3832, doi:10.1038/nphys3832.">Scarpino <em>et al.</em>, 2016</a>]</span>? We will soon see.</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="exercises-part-ii-enzymes">
+<h1>Exercises part II: Enzymes<a class="headerlink" href="#exercises-part-ii-enzymes" title="Link to this heading">#</a></h1>
+<section id="enzymes-and-chemical-reactions">
+<h2>Enzymes and chemical reactions<a class="headerlink" href="#enzymes-and-chemical-reactions" title="Link to this heading">#</a></h2>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Enzyme">Enzymes</a> are biocatalysts. They bind to some molecules and accelerate some chemical reactions, turning a substrate (the molecule) into a product (another molecule) we might care (or not) about. The transition of this system goes a little like this:</p>
+<p><img alt="enzyme_schematic" src="../_images/enzyme.png" /></p>
+<p>Let’s assume that we care about a product that comes from a substrate whose reaction rate is zero without the presence of an enzyme. We have some initial amount <span class="math notranslate nohighlight">\(S(0)\)</span> of the substrate in a liquid volume, and plan to introduce an initial amount <span class="math notranslate nohighlight">\(E(0)\)</span> of the enzyme. Can we model the catalyzation dynamics and predict how the production <span class="math notranslate nohighlight">\(P(t)\)</span> will depend on <span class="math notranslate nohighlight">\(E(0)\)</span>?</p>
+<ol class="arabic simple">
+<li><p>First, construct a master equation model.</p></li>
+</ol>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>Remember to think about the modelling recipe. What are the important parts of the system? What states do they take? What are the important transitions?</p>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>Integrate your master equation over time to look at the behavior of the system for different values of <span class="math notranslate nohighlight">\(E(0)\)</span>.</p></li>
+<li><p>Write a mean-field version of the same dynamics. Can the mean-field model predict the initial production rate <span class="math notranslate nohighlight">\(\dot{P}(0)\)</span>? Can you analytically solve this initial production rate?</p></li>
+<li><p>Can the mean-field model predict the expected half-life of the substrate at different level of <span class="math notranslate nohighlight">\(S(0)\)</span>?</p></li>
+</ol>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>The half-life is the time needed to have an amount <span class="math notranslate nohighlight">\(S(0)/2\)</span> of the substrate left.</p>
+</div>
 </section>
 </section>
 
@@ -424,6 +442,24 @@
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="exercise_SIS.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Exercises part I: SIS dynamics</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="exercise_game.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Exercises part III: Game theory</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
                 </footer>
               
@@ -441,7 +477,7 @@
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#adaptive-networks-with-node-based-ames">Adaptive networks with node-based AMEs</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#enzymes-and-chemical-reactions">Enzymes and chemical reactions</a></li>
 </ul>
   </nav></div>
 

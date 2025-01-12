@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Adaptive networks &#8212; TAME</title>
+    <title>Exercises part III: Game theory &#8212; TAME</title>
   
   
   
@@ -60,9 +60,12 @@
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'chapters/adaptive_networks';</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chapters/exercise_game';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Exercises part II: Enzymes" href="exercise_enzyme.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -113,8 +116,6 @@
     <div class="bd-container__inner bd-page-width">
       
       
-      
-        
       
       <dialog id="pst-primary-sidebar-modal"></dialog>
       <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
@@ -177,10 +178,10 @@
 
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Exercises</span></p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="exercise_SIS.html">Part I: SIS dynamics</a></li>
 <li class="toctree-l1"><a class="reference internal" href="exercise_enzyme.html">Part II: Enzymes</a></li>
-<li class="toctree-l1"><a class="reference internal" href="exercise_game.html">Part III: Game theory</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Part III: Game theory</a></li>
 </ul>
 
     </div>
@@ -240,7 +241,7 @@
       
       
       
-      <li><a href="https://mybinder.org/v2/gh/cosmos-books/tame/main?urlpath=lab/tree/chapters/adaptive_networks.ipynb" target="_blank"
+      <li><a href="https://mybinder.org/v2/gh/cosmos-books/tame/main?urlpath=lab/tree/chapters/exercise_game.ipynb" target="_blank"
    class="btn btn-sm dropdown-item"
    title="Launch on Binder"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -286,7 +287,7 @@
       
       
       
-      <li><a href="../_sources/chapters/adaptive_networks.ipynb" target="_blank"
+      <li><a href="../_sources/chapters/exercise_game.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -362,7 +363,7 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Adaptive networks</h1>
+    <h1>Exercises part III: Game theory</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -372,7 +373,8 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#adaptive-networks-with-node-based-ames">Adaptive networks with node-based AMEs</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prisoner-s-dilemma-nash-equilibria-replicator-dynamics-and-the-moran-process">Prisoner’s dilemma, nash equilibria, replicator dynamics and the Moran process</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rock-paper-scissors">Rock-paper-scissors</a></li>
 </ul>
             </nav>
         </div>
@@ -384,13 +386,59 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="adaptive-networks">
-<h1>Adaptive networks<a class="headerlink" href="#adaptive-networks" title="Link to this heading">#</a></h1>
-<p><strong>Adaptive networks</strong> refer to a class of network models where the structure co-evolves with (or in response to) a dynamical process occurring on the network. Think for example about a teacher staying home sick, such that all connections with students are <em>rewired</em> to a substitute teacher. The network is adapting to the contagion dynamics and trying to avoid further spread.</p>
-<p>In this setting, dynamical correlations between the states of different nodes are critical. Classic mean-field approach that fail to take those into account will fail to capture the adaptive mechanisms! Master equations can help, but given that networks tend to be large and complex, <strong>approximate master equations</strong> are the best tool for the job!</p>
-<section id="adaptive-networks-with-node-based-ames">
-<h2>Adaptive networks with node-based AMEs<a class="headerlink" href="#adaptive-networks-with-node-based-ames" title="Link to this heading">#</a></h2>
-<p>Coming soon! How much better are AMEs than the pairwise description used in <strong><em>The effect of a prudent adaptive behaviour on disease transmission</em></strong> <span id="id1">[<a class="reference internal" href="index.html#id9" title="Samuel V. Scarpino, Antoine Allard, and Laurent Hébert-Dufresne. The effect of a prudent adaptive behaviour on disease transmission. Nature Physics, 12(11):1042-1046, 2016. URL: https://doi.org/10.1038/nphys3832, doi:10.1038/nphys3832.">Scarpino <em>et al.</em>, 2016</a>]</span>? We will soon see.</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="exercises-part-iii-game-theory">
+<h1>Exercises part III: Game theory<a class="headerlink" href="#exercises-part-iii-game-theory" title="Link to this heading">#</a></h1>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Game_theory">Game theory</a> is a framework to consider the dynamics of games where players face each other and have to choose one strategy from a defined set of strategies. In simple two-player games, the outcome of the game can therefore be represented as a matrix <span class="math notranslate nohighlight">\(A\)</span>, where the <span class="math notranslate nohighlight">\((i,j)\)</span>-th element represents the outcome for player 1 of choosing strategy <span class="math notranslate nohighlight">\(i\)</span> when player 2 chooses strategy <span class="math notranslate nohighlight">\(j\)</span>. In general, we consider symmetric game where the so-called <em>payoff matrix</em> is the same for both players and a game is therefore defined by its payoff matrix <span class="math notranslate nohighlight">\(P\)</span>.</p>
+<section id="prisoner-s-dilemma-nash-equilibria-replicator-dynamics-and-the-moran-process">
+<h2>Prisoner’s dilemma, nash equilibria, replicator dynamics and the Moran process<a class="headerlink" href="#prisoner-s-dilemma-nash-equilibria-replicator-dynamics-and-the-moran-process" title="Link to this heading">#</a></h2>
+<p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Prisoner%27s_dilemma">prisoner’s dilemma</a> is classic model in game theory. Two people have been caught for committing a crime together (allegedly!). The police needs evidence and offers them a deal: Snitch (or defect) on the other prisoner and you will go free. That is the best possible outcome for a prisoner, and all other outcomes will be marked with negative values to represent time in prison. If only one defects, they receive the temptation reward (<span class="math notranslate nohighlight">\(T = 0\)</span>) while the other receives the sucker reward (<span class="math notranslate nohighlight">\(S &lt; 0\)</span>). If they both defect, they are both punished with <span class="math notranslate nohighlight">\(S&lt;P&lt;0\)</span>. If neither defect, they end up with a light sentence due to missing evidence, a reward <span class="math notranslate nohighlight">\(R\)</span> in and of itself with <span class="math notranslate nohighlight">\(S&lt;P&lt;R&lt;0\)</span>.</p>
+<p>Let strategy 1 be cooperation between prisoners and strategy 2 be defection, the payoff or award matrix <span class="math notranslate nohighlight">\(A\)</span> can be represented like so:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+A = 
+\begin{pmatrix}
+R &amp; S\\
+0 &amp; P
+\end{pmatrix}
+= 
+\begin{pmatrix}
+-2 &amp; -6\\
+0 &amp; -4
+\end{pmatrix}
+\end{split}\]</div>
+<p>What should prisoner 1 do? If they assume a 50/50 chance that the other prisoner snitches, the values given above suggest they should defect as the average of row 2 is less negative (-2) than the average of row 1 (-4). Let’s call this strategy the <em>rational</em> choice. If they both act rationally, they both get four years in prison and neither of them could individually improve on this situation given additional knowledge. This fact, that no single player can improve their outcome on their own, makes the defect/defect outcome of four years in prison a <a class="reference external" href="https://en.wikipedia.org/wiki/Nash_equilibrium">Nash Equilibrium</a>.</p>
+<p>That being said, the obvious optimal outcome is for both of them to cooperate and only get two years in prison each. But that state could prove unstable because of the temptation that then exists to defect…</p>
+<p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Replicator_equation">Replicator equation</a> is the mean-field approach (deterministic, well-mixed, continuous) used to model such games in evolutionary dynamics. It lets us track the fitness of a given strategy as a function of the distribution of strategies in a population by letting strategies replicate or decay at a rate proportional to their fitness. In general, the replicator equation for the frequency <span class="math notranslate nohighlight">\(x_i\)</span> of strategy <span class="math notranslate nohighlight">\(i\)</span> in the population is given by</p>
+<div class="math notranslate nohighlight">
+\[
+\dot{x}_i = x_i\left[f_i(x) - \phi(x)\right]
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(f_i(x)\)</span> is the fitness of strategy <span class="math notranslate nohighlight">\(i\)</span> given the distribution of strategies and <span class="math notranslate nohighlight">\(\phi(x)\)</span> is the average fitness across all <span class="math notranslate nohighlight">\(n\)</span> strategies, <span class="math notranslate nohighlight">\(\phi(x) = \sum_{j=1}^n x_jf_j(x)\)</span>.</p>
+<p>For the prisoner’s dilemma, the fitness of a strategy would be <span class="math notranslate nohighlight">\(f_i(x) = \sum_{k=1}^n A_{i,k}x_k\)</span>.</p>
+<p>A <a class="reference external" href="https://en.wikipedia.org/wiki/Moran_process">Moran process</a> is a simple stochastic model used to describe replicator dynamics in <em>finite</em> populations. It is similar to a voter model. At each time step, two random individuals are chosen: One dies and one replicates, such that the population size remains fixed. Selection can be enforced by biasing the individuals chosen for death or replication. Or, as we will attempt here, perhaps by having the individuals play out a game…</p>
+<ol class="arabic simple">
+<li><p>Assuming that the winner of a Prisoner’s dilemma gets to replicate over the loser, and that nothing happens during ties, construct a master equation model for a population of <span class="math notranslate nohighlight">\(N\)</span> agents randomly playing the prisoner’s dilemma.</p></li>
+<li><p>Analyze your master equation. What does the dynamic look like? Do the outcomes match what is expected from the deterministic replicator equation?</p></li>
+<li><p>Could we write a master equation that would capture a stochastic and discrete version of the replicator equation?</p></li>
+</ol>
+</section>
+<section id="rock-paper-scissors">
+<h2>Rock-paper-scissors<a class="headerlink" href="#rock-paper-scissors" title="Link to this heading">#</a></h2>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Rock_paper_scissors">Rock-paper-scissors</a> is a simple two-player game that lets us explore an example where three strategies are available for each player. The payoff matrix has three possible outcomes: win (1), tie (0), and loss (-1). We can therefore write the game as</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+A = 
+\begin{pmatrix}
+0 &amp; -1 &amp; 1\\
+1 &amp; 0 &amp; -1\\
+-1 &amp; 1 &amp; 0\\
+\end{pmatrix}
+\end{split}\]</div>
+<ol class="arabic simple">
+<li><p>First, construct a master equation model for the Moran process of the rock-paper-scissors game.</p></li>
+<li><p>Second, write the replicator equations for the rock-paper-scissors game.</p></li>
+<li><p>Do the two approaches predict the same kind of behavior?</p></li>
+</ol>
 </section>
 </section>
 
@@ -424,6 +472,15 @@
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="exercise_enzyme.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Exercises part II: Enzymes</p>
+      </div>
+    </a>
 </div>
                 </footer>
               
@@ -441,7 +498,8 @@
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#adaptive-networks-with-node-based-ames">Adaptive networks with node-based AMEs</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prisoner-s-dilemma-nash-equilibria-replicator-dynamics-and-the-moran-process">Prisoner’s dilemma, nash equilibria, replicator dynamics and the Moran process</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rock-paper-scissors">Rock-paper-scissors</a></li>
 </ul>
   </nav></div>
 
