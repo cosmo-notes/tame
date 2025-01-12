@@ -26,4 +26,13 @@ parts:
   - file: chapters/meanFLAME
     title: Mean-field limits
 
+- caption: Exercises
+  chapters:
+  - file: chapters/exercise_SIS
+    title: "Part I: SIS dynamics"
+  - file: chapters/exercise_enzyme
+    title: "Part II: Enzymes"
+  - file: chapters/exercise_game
+    title: "Part III: Game theory"
+
 
