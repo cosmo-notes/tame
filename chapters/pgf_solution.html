@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Probability generating function solution &#8212; TAME</title>
+    <title>Occupation number generating function &#8212; TAME</title>
   
   
   
@@ -364,7 +364,7 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Probability generating function solution</h1>
+    <h1>Occupation number generating function</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -374,8 +374,9 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solution-to-the-birth-death-process">Solution to the birth-death process</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#equilibrium-of-the-linear-birth-death-process">Equilibrium of the linear birth-death process</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comparison-with-numerical-integration">Comparison with numerical integration</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#general-solution-to-an-exponential-birth-death-process">General solution to an exponential birth-death process</a></li>
 </ul>
             </nav>
         </div>
@@ -387,8 +388,8 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="probability-generating-function-solution">
-<h1>Probability generating function solution<a class="headerlink" href="#probability-generating-function-solution" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="occupation-number-generating-function">
+<h1>Occupation number generating function<a class="headerlink" href="#occupation-number-generating-function" title="Link to this heading">#</a></h1>
 <p>Master equations are simply system of differential equations and can therefore be solved by the usual techniques. When looking for a steady-state solution, we can simply set all time derivatives to zero and try to solve for the occupation numbers at equilibrium. These system often contain a large or even infinite number of equations, but for most model their structure should be regular. This allows us to write recursion formula for the equilibrium values. Recursion that, if lucky or creative enough, we could solve explicitly. Or we could be a bit more systematic and attempt this approach using <strong>probability generating functions</strong>.</p>
 <p>Consider the following generating function,</p>
 <div class="math notranslate nohighlight">
@@ -396,9 +397,19 @@
 G(x,t) = \sum _{n=-\infty}^{\infty}P_n(t)x^n
 \]</div>
 <p>which is defined over all integer values of <span class="math notranslate nohighlight">\(n\)</span>. <span class="math notranslate nohighlight">\(G(x,t)\)</span> is a probability generating functions since its coefficients <span class="math notranslate nohighlight">\(P_n(t)\)</span> are occupation numbers, and therefore positive coefficients, such that <span class="math notranslate nohighlight">\(G(1,t) = 1\)</span> for all time <span class="math notranslate nohighlight">\(t\)</span>.</p>
-<p>Our goal here will therefore be to rewrite master equations (large systems of differential equations) in terms of a single partial differential equation for <span class="math notranslate nohighlight">\(G(x,t\)</span>).</p>
-<section id="solution-to-the-birth-death-process">
-<h2>Solution to the birth-death process<a class="headerlink" href="#solution-to-the-birth-death-process" title="Link to this heading">#</a></h2>
+<p>Interestingly, the Method of Moments is now neatly rewritten as derivatives of <span class="math notranslate nohighlight">\(G(x,t)\)</span>. For example, we can write</p>
+<div class="math notranslate nohighlight">
+\[
+\langle n(t)\rangle = \sum_{n=-\infty}^{\infty} nP_n(t) = \frac{\partial G(x,t)}{\partial x}\bigg\vert_{x=1} \; , 
+\]</div>
+<p>and</p>
+<div class="math notranslate nohighlight">
+\[
+\langle n(t)^2\rangle = \sum_{n=-\infty}^{\infty} n^2P_n(t) = \frac{\partial}{\partial x}\left(x\frac{\partial G(x,t)}{\partial x}\right)\bigg\vert_{x=1} \; .
+\]</div>
+<p>More generally, our goal can now be to rewrite master equations (large systems of differential equations) in terms of a single partial differential equation for <span class="math notranslate nohighlight">\(G(x,t\)</span>). While these might not be easier to handle numerically, they can sometimes be solved directly. This happens rarely to be honest, but we give a few examples of techniques to try.</p>
+<section id="equilibrium-of-the-linear-birth-death-process">
+<h2>Equilibrium of the linear birth-death process<a class="headerlink" href="#equilibrium-of-the-linear-birth-death-process" title="Link to this heading">#</a></h2>
 <p>Consider the <a class="reference external" href="https://en.wikipedia.org/wiki/Birth%E2%80%93death_process">birth–death process</a> with a fixed constant birth rate <span class="math notranslate nohighlight">\(\mu\)</span> for particles and a fixed death rate <span class="math notranslate nohighlight">\(\nu\)</span> for all active particles. This is a system we also tackle with numerical integration, which means we know it contains a steady-state distribution over all occupation numbers. For this process, our master equations are defined as follows for <span class="math notranslate nohighlight">\(n\geq 0\)</span>,</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -505,6 +516,57 @@ G(x) = \exp\left(\frac{\mu}{\nu}(x-1)\right)
 </div>
 </div>
 </section>
+<section id="general-solution-to-an-exponential-birth-death-process">
+<h2>General solution to an exponential birth-death process<a class="headerlink" href="#general-solution-to-an-exponential-birth-death-process" title="Link to this heading">#</a></h2>
+<p>Consider now a birth-death process representing cell division. Active cells divide at rate <span class="math notranslate nohighlight">\(\mu\)</span> and die at rate <span class="math notranslate nohighlight">\(\nu\)</span>. For this process, our master equations are defined as follows for a number of active cells <span class="math notranslate nohighlight">\(n\geq 0\)</span>,</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+\frac{d}{dt}P_n(t) &amp;= -(\mu + \nu)nP_n(t) + (n+1)\nu P_{n+1}(t) \quad \textrm{for n=0}\\
+\frac{d}{dt}P_n(t) &amp;= -(\mu + \nu)nP_n(t) + (n+1)\nu P_{n+1}(t) + \mu (n-1) P_{n-1}(t) \quad \textrm{for n&gt;0}\\
+\end{align}
+\end{split}\]</div>
+<p>This process has an absorbing state at <span class="math notranslate nohighlight">\(n=0\)</span>, such that we do not expect a steady-state solution as in the previous model with linear birth. Instead, we are more likely to be interested in the <em>extinction probability</em> of the process:</p>
+<div class="math notranslate nohighlight">
+\[
+P_{\textrm{ext}}(t) = P_0(t)=G(0,t) \; .
+\]</div>
+<p>We can attempt to solve this probability with a direct solution of the system. We use the same recipe as in our previous example to reduce our set of infinitely many coupled  master equations to a single partial differential equation. In this case, we should obtain</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{\partial}{\partial t}G(x,t) = \nu(1-x)\left(1-\frac{\mu}{\nu}x\right)\frac{\partial}{\partial x}G(x,t) \; .
+\]</div>
+<p>Since we do not expect a steady-state solution, we cannot ignore the left-hand side of the equation and must attempt a time-explicit solution. We use the <a class="reference external" href="https://en.wikipedia.org/wiki/Method_of_characteristics">Method of characteristics</a> where the idea is to look for a solution as a characteristc curve (or line) in <span class="math notranslate nohighlight">\(x(s)\)</span> and <span class="math notranslate nohighlight">\(t(s)\)</span> space that depends on a single characteristic curve parameter <span class="math notranslate nohighlight">\(s\)</span>along which <span class="math notranslate nohighlight">\(dG/ds = 0\)</span>. If such a solution exist, it must follow the <a class="reference external" href="https://en.wikipedia.org/wiki/Total_derivative">total derivative</a> rule such that</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{d}{ds} G\left(x(s),t(s)\right) = 0 = \frac{\partial G(x,t)}{\partial x}\frac{dx(s)}{d s} + \frac{\partial G(x,t)}{\partial t} \frac{dt}{ds} \; .
+\]</div>
+<p>Along this characteristic curve in <span class="math notranslate nohighlight">\(s\)</span>, we would then simply have a constant function where dependencies in <span class="math notranslate nohighlight">\(s\)</span> balance out. That’s by definition, such that we are looking for a solution under strong assumptions which is why the method does not always work. When it does, the behaviour of <span class="math notranslate nohighlight">\(G(x,t)\)</span> is then fully contained within our initial conditions (<span class="math notranslate nohighlight">\(x(0)\)</span> and <span class="math notranslate nohighlight">\(t(0)\)</span>) as well as the shape of <span class="math notranslate nohighlight">\(x(s)\)</span> and <span class="math notranslate nohighlight">\(t(s)\)</span>. In our case that’s</p>
+<div class="math notranslate nohighlight">
+\[
+G\left(x(s),t(s)\right) = G\left(x(0)=x_0,t(0)=0\right) = x_0^{n_0} \; .
+\]</div>
+<p>To find such a function, we can set <span class="math notranslate nohighlight">\(t(s) = s\)</span> such that the last term of the null total derivative condition gives us the left-hand side of the partial differential equation of our model. Equating the two, we are then left with a single ordinary differential equation to solve:</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{dx(s)}{ds} = \frac{dx(t)}{dt} = -\nu \left[1-x(t)\right] \left[1-\frac{\mu}{\nu}x(t)\right] \rightarrow -\nu dt = \frac{dx}{\left[1-x(t)\right] \left[1-\frac{\mu}{\nu}x(t)\right]}
+\]</div>
+<p>Integrating on both side from <span class="math notranslate nohighlight">\(x_0\)</span> to <span class="math notranslate nohighlight">\(x\)</span> (assuming <span class="math notranslate nohighlight">\(\mu \neq \nu\)</span>) and solving for <span class="math notranslate nohighlight">\(x_0\)</span>, one can then find the time-explicit solution to this model.</p>
+<div class="math notranslate nohighlight">
+\[
+G(x,t) = \left[\frac{(\nu-\mu x)e^{(\nu-\mu)t}-\nu(1-x)}{(\nu-\mu x)e^{(\nu-\mu)t}-\mu(1-x)}\right]^{n_0}
+\]</div>
+<p>With this general solution, we can explicitly write the extinction probability as a function of time,</p>
+<div class="math notranslate nohighlight">
+\[
+P_{\textrm{ext}}(t) = P_0(t)=G(0,t) = \left[\frac{\nu e^{(\nu-\mu)t}-\nu}{\nu e^{(\nu-\mu)t}-\mu}\right]^{n_0} \; .
+\]</div>
+<p>With this expression, we can recover a known result from our branching process studies. In the large time limit, <span class="math notranslate nohighlight">\(t\rightarrow \infty\)</span>, we find</p>
+<div class="math notranslate nohighlight">
+\[
+P_{\textrm{ext}} = \lim_{t\rightarrow \infty}P_0(t) = 1-\left(\frac{\nu}{\mu}\right)^{n_0} \; .
+\]</div>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -572,8 +634,9 @@ G(x) = \exp\left(\frac{\mu}{\nu}(x-1)\right)
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solution-to-the-birth-death-process">Solution to the birth-death process</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#equilibrium-of-the-linear-birth-death-process">Equilibrium of the linear birth-death process</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comparison-with-numerical-integration">Comparison with numerical integration</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#general-solution-to-an-exponential-birth-death-process">General solution to an exponential birth-death process</a></li>
 </ul>
   </nav></div>
 
