@@ -572,7 +572,7 @@
 \[\begin{split}
 \begin{align}
 \frac{d}{dt}\langle n_1(t) \rangle &amp; = \alpha \langle n_1(t) \rangle - \beta \langle n_1(t) n_2(t)\rangle \\
-\frac{d}{dt}\langle n_2(t) \rangle &amp; = \beta \langle n_1(t) n_2(t)\rangle - \gamma \beta \langle n_2(t)\rangle
+\frac{d}{dt}\langle n_2(t) \rangle &amp; = \beta \langle n_1(t) n_2(t)\rangle - \gamma \langle n_2(t)\rangle
 \end{align}
 \end{split}\]</div>
 <p>Uh oh! Our first-order equations depend on the second moment <span class="math notranslate nohighlight">\(\langle n_1(t) n_2(t)\rangle\)</span>. As discussed above, this is where <a class="reference external" href="https://en.wikipedia.org/wiki/Moment_closure">moment closure</a> comes in to save the day! We need to make some educated guess or assumptions in order to approximate the higher unknown moment <span class="math notranslate nohighlight">\(\langle n_1(t) n_2(t)\rangle\)</span> using the lower known moments <span class="math notranslate nohighlight">\(\langle n_1(t) \rangle\)</span> and <span class="math notranslate nohighlight">\(\langle n_2(t)\rangle\)</span>. We could attempt to be fancy and guess the form of potential correlations between the predator and prey populations… or we can simply assume that they are independent.</p>
@@ -581,7 +581,7 @@
 \[\begin{split}
 \begin{align}
 \frac{d}{dt}\langle n_1(t) \rangle &amp; = \alpha \langle n_1(t) \rangle - \beta \langle n_1(t)\rangle \langle  n_2(t)\rangle \\
-\frac{d}{dt}\langle n_2(t) \rangle &amp; = \beta \langle n_1(t)\rangle \langle n_2(t)\rangle - \gamma \beta \langle n_2(t)\rangle
+\frac{d}{dt}\langle n_2(t) \rangle &amp; = \beta \langle n_1(t)\rangle \langle n_2(t)\rangle - \gamma \langle n_2(t)\rangle
 \end{align}
 \end{split}\]</div>
 <p>Again, MoM’s recipe leads to a classic model which could have been derived using a classic compartmental approach. However, the method of moments can also be used to generate a counter-intuitive 5-dimensional system for the first five moments of the Lotka-Volterra model. How else could one track the variance in a complex systems like that? MoM’s magic!</p>
